@@ -8,7 +8,7 @@ environment{
 stages{
   stage("GitChekout"){
    steps{
-     git credentialsId: 'javahme' , url:'github branch url'
+     git branch: 'main', credentialsId: 'gitdemo', url: 'https://github.com/sabiha-123/tomcat-project.git'
 	 }
 }
   stage("MaveBuild"){

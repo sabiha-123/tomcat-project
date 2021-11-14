@@ -1,0 +1,32 @@
+pipeline{
+
+agent any
+
+environment{
+  PATH="/usr/bin/mvn:$PATH"
+  }
+stages{
+  stage("GitChekout"){
+   steps{
+     git branch: 'master', credentialsId: 'gitdemo', url: 'https://github.com/sabiha-123/tomcat-project.git'
+	 }
+}
+  stage("MaveBuild"){
+    steps{
+	  sh "mvn clean package"
+	  sh "mv target/*.war target/myweb.war"
+	  }
+ }
+  stage("deploy-dev"){
+    steps{
+	  sshagent(['tomcat-dev']){
+	  sh """
+	    scp -o StrictHostKeyChecking=no target/myweb.war root@172.31.17.171:/opt/apache-tomcat-9.0.54/webapps/
+		ssh root@172.31.17.171 /opt/apache-tomcat-9.0.54/bin/shutdown.sh
+		ssh root@172.31.17.171 /opt/apache-tomcat-9.0.54/bin/startup.sh
+		"""
+	  	 }
+	   }
+   }
+  }
+}

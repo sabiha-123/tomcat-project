@@ -31,8 +31,10 @@
 					<url>http://172.31.17.171:8080/manager</url>
 					<server>mytomcat</server>
 					<path>/mywebapp</path>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
+				<properties>
+                                        <failOnMissingWebXml>false</failOnMissingWebXml>   
+                               </properties>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

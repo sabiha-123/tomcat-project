@@ -21,9 +21,9 @@ stages{
     steps{
 	  sshagent(['tomcat-dev']){
 	  sh """
-	    scp -o StrictHostKeyChecking=no target/myweb.war root@172.31.15.237:/opt/tomcat/apache-tomcat-9.0.54/webapps/
-		ssh root@172.31.15.237 /opt/tomcat/apache-tomcat-9.0.54/bin/shutdown.sh
-		ssh root@172.31.15.237 /opt/tomcat/apache-tomcat-9.0.54/bin/startup.sh
+	    scp -o StrictHostKeyChecking=no target/myweb.war root@172.31.45.75:/opt/tomcat/apache-tomcat-9.0.54/webapps/
+		ssh root@172.31.45.75 /opt/tomcat/apache-tomcat-9.0.54/bin/shutdown.sh
+		ssh root@172.31.45.75 /opt/tomcat/apache-tomcat-9.0.54/bin/startup.sh
 		"""
 	  	 }
 	   }
